@@ -36,4 +36,4 @@
 6. Click `gainsLosses.json`. The view will change, switch to the `Response` tab.
 7. Copy-paste the contents of that tab, save it as `gainsLosses.json`.
 8. Run the `./EtradeK4.ps1` in the directory containing the `gainsLosses.json`. This can take a while since it asks Riksbank's API for the exchange rates at the different dates.
-9. Enjoy a clear table with SEK-converted values, rounded to full kronor, and ready to be copied into the K4 form.
+9. Enjoy a clear table with SEK-converted values, rounded to full kronor, and ready to be copied into the [K4][k4] form.
