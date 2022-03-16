@@ -3,7 +3,9 @@
 [etrade]: https://us.etrade.com/home/welcome-back
 [k4]:     https://www.skatteverket.se/privat/etjansterochblanketter/blanketterbroschyrer/blanketter/info/2104.4.39f16f103821c58f680006244.html
 
-## Compute dividends from [E*Trade][etrade]
+## Features
+
+### Compute dividends from [E*Trade][etrade]
 
 **Script**: `Scripts/EtradeDividends.ps1`
 
@@ -20,7 +22,7 @@
 10. Enjoy a clear list with SEK-converted values, rounded to full kronor.
 11. Cross-check the USD amounts with the 1042-S form from [E*Trade][etrade].
 
-## Compute [K4][k4] from [E*Trade][etrade]
+### Compute [K4][k4] from [E*Trade][etrade]
 
 **Script**: `Scripts/EtradeK4.ps1`
 
