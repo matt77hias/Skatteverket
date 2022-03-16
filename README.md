@@ -10,9 +10,9 @@
 **Usage**:
 1. Log into [E*Trade][etrade].
 2. Go to _Stock Plan_ -> _Holdings_ -> _Other Holdings_.
-3. Open the web browser inspector (_e.g., use `F12` in Google Chrome_).
+3. Open the web browser inspector (_e.g., press `F12` in Google Chrome_).
 4. Use the `Network` tab to record the outgoing HTTP requests.
-5. _Optionally_ use the `Clear` button to get rid of the clutter.
+5. _Optionally_ click the `Clear` button to get rid of the clutter.
 6. Expand the `Cash` section. A `getCashTransactions.json` should appear in the `Network` view.
 7. Click `getCashTransactions.json`. The view will change, switch to the `Response` tab.
 8. Copy-paste the contents of that tab, save it as `getCashTransactions.json`.
@@ -27,9 +27,9 @@
 **Usage**:
 1. Log into [E*Trade][etrade].
 1. Go to _Stock Plan_ -> _Tax Information_ -> _Cost Basis_.
-2. Open the web browser inspector (_e.g., use `F12` in Google Chrome_).
+2. Open the web browser inspector (_e.g., press `F12` in Google Chrome_).
 3. Use the `Network` tab to record the outgoing HTTP requests.
-4. _Optionally_ use the `Clear` button to get rid of the clutter.
+4. _Optionally_ click the `Clear` button to get rid of the clutter.
 5. Select the tax year and click `Apply`. A `gainsLosses.json` should appear in the `Network` view.
 6. Click `gainsLosses.json`. The view will change, switch to the `Response` tab.
 7. Copy-paste the contents of that tab, save it as `gainsLosses.json`.
