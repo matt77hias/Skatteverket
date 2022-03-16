@@ -20,7 +20,7 @@
 8. Copy-paste the contents of that tab, save it as `getCashTransactions.json`.
 9. Run the `./EtradeDividends.ps1` in the directory containing the `getCashTransactions.json`. This can take a while since it asks Riksbank's API for the exchange rates at the different dates.
 10. Enjoy a clear list with SEK-converted values, rounded to full kronor.
-11. Cross-check the USD amounts with the 1042-S form from [E*Trade][etrade].
+11. Cross-check the USD amounts with the 1042-S form from [E*Trade][etrade]. (`getCashTransactions.json` only looks back 365 days.)
 
 ### Compute [K4][k4] from [E*Trade][etrade]
 
