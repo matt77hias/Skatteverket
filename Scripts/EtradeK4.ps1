@@ -5,26 +5,26 @@ function Get-SEKUSDPMIAtDate ([datetime]$Date)
 	do
 	{
 		$body = [string]::Format('<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://swea.riksbank.se/xsd">
-     <soap:Header/>
-     <soap:Body>
-         <xsd:getInterestAndExchangeRates>
-             <searchRequestParameters>
-                 <aggregateMethod>D</aggregateMethod>
-                 <datefrom>{0}</datefrom>
-                 <dateto>{0}</dateto>
-                 <languageid>en</languageid>
-                 <min>false</min>
-                 <avg>true</avg>
-                 <max>true</max>
-                 <ultimo>false</ultimo>
-                 <!--1 or more repetitions:-->
-                 <searchGroupSeries>
-                     <groupid>11</groupid>
-                     <seriesid>SEKUSDPMI</seriesid>
-                 </searchGroupSeries>
-             </searchRequestParameters>
-         </xsd:getInterestAndExchangeRates>
-     </soap:Body>
+	 <soap:Header/>
+	 <soap:Body>
+		 <xsd:getInterestAndExchangeRates>
+			 <searchRequestParameters>
+				 <aggregateMethod>D</aggregateMethod>
+				 <datefrom>{0}</datefrom>
+				 <dateto>{0}</dateto>
+				 <languageid>en</languageid>
+				 <min>false</min>
+				 <avg>true</avg>
+				 <max>true</max>
+				 <ultimo>false</ultimo>
+				 <!--1 or more repetitions:-->
+				 <searchGroupSeries>
+					 <groupid>11</groupid>
+					 <seriesid>SEKUSDPMI</seriesid>
+				 </searchGroupSeries>
+			 </searchRequestParameters>
+		 </xsd:getInterestAndExchangeRates>
+	 </soap:Body>
  </soap:Envelope>', $Date.ToString("yyyy-MM-dd"))
 		$groups = $([xml]$(Invoke-WebRequest -Method Post -Headers @{'Content-Type'='application/soap+xml;charset=utf-8;action=urn:getInterestAndExchangeRates'} -SkipHeaderValidation -Body $body -Uri 'https://swea.riksbank.se/sweaWS/services/SweaWebServiceHttpSoap12Endpoint' -UseBasicParsing)."Content").Envelope.body.getInterestAndExchangeRatesResponse.return.groups
 		# Scan backwards in time for the latest rate, if the response for the current is empty.
@@ -56,10 +56,10 @@ foreach ($ct in $gainsLosses)
 		$closingTransTotalProceeds = [math]::Max(0.0, $tx)
 		$closingTransTotalProceedsSEK = [math]::Max(0, $txSEK)
 
-        $txDate = [datetime]::ParseExact($ct.openingTransDateAcquired, "MM/dd/yyyy", $null)
+		$txDate = [datetime]::ParseExact($ct.openingTransDateAcquired, "MM/dd/yyyy", $null)
 		$txRate = Get-SEKUSDPMIAtDate($txDate)
 
-        $tx = $ct.openingTransAdjCostBasis
+		$tx = $ct.openingTransAdjCostBasis
 		$txSEK = [int][math]::Round($tx * $txRate)
 
 		$openingTransAdjCostBasis = [math]::Max(0.0, $tx)
@@ -70,16 +70,16 @@ foreach ($ct in $gainsLosses)
 		$totalOpening += $openingTransAdjCostBasis
 		$totalOpeningSEK += $openingTransAdjCostBasisSEK
 
-        $k4 += [ordered]@{
-            "Purchased" = $ct.openingTransDateAcquired;
-            "Sold" =  $ct.closingTransDateSold;
-            "Symbol" = $ct.symbol ;
-            "QTY"  = $ct.quantity ;
-            "Closing Proceeds USD" = $closingTransTotalProceeds;
-            "Closing Proceeds SEK" = $closingTransTotalProceedsSEK;
-            "Purchase Price USD" = $openingTransAdjCostBasis;
-            "Purchase Price SEK" = $openingTransAdjCostBasisSEK;
-        }
+		$k4 += [ordered]@{
+			"Purchased" = $ct.openingTransDateAcquired;
+			"Sold" =  $ct.closingTransDateSold;
+			"Symbol" = $ct.symbol ;
+			"QTY"  = $ct.quantity ;
+			"Closing Proceeds USD" = $closingTransTotalProceeds;
+			"Closing Proceeds SEK" = $closingTransTotalProceedsSEK;
+			"Purchase Price USD" = $openingTransAdjCostBasis;
+			"Purchase Price SEK" = $openingTransAdjCostBasisSEK;
+		}
 	}
 }
 
